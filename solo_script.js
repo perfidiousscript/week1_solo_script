@@ -53,16 +53,16 @@ function calculateSTI(array){
     bonus = 0.13;
   }
   console.log("bonus is: ", bonus)
-  newArray[1] = bonus;
+  newArray[1] = (" " + bonus);
 
 //console.log(newArray);
 //BUG3: Here the addition of floating point decimals was getting surreal to I jued
 //'toFixed() to truncate things' 
-  newArray[2] = (baseSalary * (1.0 + bonus)).toFixed(2);
+  newArray[2] = (" " + (baseSalary * (1.0 + bonus)).toFixed(2));
 
 //console.log(newArray);
 
-  newArray[3] = baseSalary * bonus;
+  newArray[3] = (" " + baseSalary * bonus);
 
 //console.log(newArray);
 
