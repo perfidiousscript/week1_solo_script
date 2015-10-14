@@ -16,7 +16,10 @@ position = document.getElementById('content');
 //Loop the array, extracting each array and writing information to the DOM
 //Note that the information is not 'clean'
 for(var i = 0; i < array.length; i++){
-	array[i] = calculateSTI(array);
+  //BUG 1: calculateSTI is being called on array, not array[i]. 
+  //Therefore the function is not looping through array. This is fixed by turning array into
+  //array[i]
+	array[i] = calculateSTI(array[i]);
  	newEl = document.createElement('li');
 	newText = document.createTextNode(array[i]);
 	newEl.appendChild(newText);
@@ -26,23 +29,35 @@ for(var i = 0; i < array.length; i++){
 function calculateSTI(array){
   var newArray = [];
 
+  console.log(newArray);
+
   newArray[0] = array[0];
 
   var employeeNumber = array[1];
   var baseSalary = array[2];
   var reviewScore = array[3];
-
+  
   var bonus = getBaseSTI(reviewScore) + getYearAdjustment(employeeNumber) - getIncomeAdjustment(baseSalary);
   if(bonus > 0.13){
     bonus = 0.13;
   }
 
   newArray[1] = bonus;
+
+console.log(newArray);
+
   newArray[2] = baseSalary * (1.0 + bonus);
+
+console.log(newArray);
+
   newArray[3] = baseSalary * bonus;
+
+console.log(newArray);
+
   console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
 }
+
 
 function getBaseSTI(reviewScore){
   var basePercent;
@@ -63,8 +78,11 @@ function getBaseSTI(reviewScore){
       basePercent = 0.10;
       break;
   }
-  return basePercent - 1;
+  //Here basePercent - 1 throws things off. I fixed this by removing the '-1'
+  return basePercent// - 1;
 }
+
+
 
 function getYearAdjustment(employeeNumber){
   var yearAdjustment = 0;
