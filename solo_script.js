@@ -1,5 +1,16 @@
 // ! ! !
 // Three Bugs
+//I found three bugs: 
+
+//BUG1 is at line 20 where the function was being called on 
+//array, but not on the index of array, 
+
+//BUG2 is at line 84 where basepercent was being subtracted
+//from one, making things negative.
+
+//BUG3 was at line 56 where adding floating point decimals was giving wonky results.
+//I ran the sum through two fixed to truncate it at 2 decimals.
+
 
 var arrayAtticus = ["Atticus", "2405", "47000", 3];
 var arrayJem = ["Jem", "62347", "63500", 4];
@@ -45,7 +56,8 @@ function calculateSTI(array){
   newArray[1] = bonus;
 
 //console.log(newArray);
-
+//BUG3: Here the addition of floating point decimals was getting surreal to I jued
+//'toFixed() to truncate things' 
   newArray[2] = (baseSalary * (1.0 + bonus)).toFixed(2);
 
 //console.log(newArray);
