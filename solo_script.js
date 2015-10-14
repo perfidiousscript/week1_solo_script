@@ -41,18 +41,18 @@ function calculateSTI(array){
   if(bonus > 0.13){
     bonus = 0.13;
   }
-
+  console.log("bonus is: ", bonus)
   newArray[1] = bonus;
 
-console.log(newArray);
+//console.log(newArray);
 
-  newArray[2] = baseSalary * (1.0 + bonus);
+  newArray[2] = (baseSalary * (1.0 + bonus)).toFixed(2);
 
-console.log(newArray);
+//console.log(newArray);
 
   newArray[3] = baseSalary * bonus;
 
-console.log(newArray);
+//console.log(newArray);
 
   console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
@@ -78,7 +78,9 @@ function getBaseSTI(reviewScore){
       basePercent = 0.10;
       break;
   }
-  //Here basePercent - 1 throws things off. I fixed this by removing the '-1'
+  //BUG 2: Here 'basePercent - 1' throws things off (made basePercent negative). 
+  //I fixed this by removing the '- 1'
+  console.log("base percent: ", basePercent)
   return basePercent// - 1;
 }
 
@@ -89,6 +91,7 @@ function getYearAdjustment(employeeNumber){
   if(employeeNumber.length == 4){
     yearAdjustment = 0.05;
   }
+  console.log("yearAdjustment: ",yearAdjustment);
   return yearAdjustment;
 }
 
@@ -98,5 +101,6 @@ function getIncomeAdjustment(salary){
   if(salary > 65000){
     incomeAdjustment = 0.01;
   }
+  console.log("incomeAdjustment: ", incomeAdjustment);
   return incomeAdjustment;
 }
